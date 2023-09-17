@@ -58,7 +58,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                           trailing: Text(
                               data[index].orderItem![dindex].status.toString()),
                         ),
-                      );
+                     );
                     },
                   ),
                 ],

@@ -4,9 +4,9 @@ import 'package:flutterdemo/model.dart';
 import 'package:http/http.dart';
 
 class CartProvider {
-  final String postsURL = "http://192.168.254.61:8080/";
+  final String postsURL = "http://192.168.1.153:8080/";
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkN2M1OTNmLTMwZGMtNDYwNy04NmI2LTZhN2NhYzdhYTliMyIsImlhdCI6MTY5NDc0MzE5MCwiZXhwIjoxNjk3MzM1MTkwfQ.BkXIuCmjO2dLdxCBvUdPAoY2a4ifX31v5w0dpxxIO20";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NDc3MTcyOCwiZXhwIjoxNjk3MzYzNzI4fQ.D6PCcnzawQi4J1AFa6EHODAvApHroYNDn6dh6bAhaQU";
   Future<List<OrderModel>> getOrders() async {
     try {
       Response res =
