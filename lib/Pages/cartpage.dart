@@ -48,26 +48,35 @@ class _CartPageState extends ConsumerState<CartPage> {
                 getTotal() {
                   formGroup.control('total').value = formGroup
                       .control('books')
-                      .value
+                      .value.where((element) => element['isChecked'] == true)
                       .fold(
                           0,
                           (dynamic prev, dynamic product) =>
                               prev + product['price']);
                 }
-
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            print(formGroup.value);
-                          },
-                          child: const Text("Check")),
+      
                       ListView.builder(
                         shrinkWrap: true,
                         itemCount: data.length,
                         itemBuilder: (context, index) {
+                          productTotal(){
+                             final value = data[index]
+                                                        .book!
+                                                        .price! *
+                                                    formGroup
+                                                        .control(
+                                                            'books.$index.quantity')
+                                                        .value;
+                          
+                                                formGroup
+                                                    .control(
+                                                        'books.$index.price')
+                                                    .value = value;
+                          }
                           return Card(
                               child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -82,25 +91,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                                               'books.$index.isChecked')
                                           .value = control.value;
 
-                                      if (control.value!) {
-                                        formGroup.control('total').value =
-                                            formGroup
-                                                .control('total')
-                                                .value +
-                                            formGroup
-                                                .control(
-                                                    'books.$index.price')
-                                                .value;
-                                      } else {
-                                        formGroup.control('total').value =
-                                            formGroup
-                                                .control('total')
-                                                .value -
-                                            formGroup
-                                                .control(
-                                                    'books.$index.price')
-                                                .value;
-                                      }
+                                     getTotal();
                                     },
 
                                 ),
@@ -117,22 +108,8 @@ class _CartPageState extends ConsumerState<CartPage> {
                                                     .control(
                                                         'books.$index.quantity')
                                                     .value++;
-                          
-                                                final value = data[index]
-                                                        .book!
-                                                        .price! *
-                                                    formGroup
-                                                        .control(
-                                                            'books.$index.quantity')
-                                                        .value;
-                          
-                                                formGroup
-                                                    .control(
-                                                        'books.$index.price')
-                                                    .value = value;
-                                              if(formGroup.control('books.$index.isChecked').value) {
+                                                productTotal();
                                                 getTotal();
-                                              }
                                               },
                                               icon: const Icon(Icons.add)),
                                         ),
@@ -164,23 +141,9 @@ class _CartPageState extends ConsumerState<CartPage> {
                                                             'books.$index.quantity')
                                                         .value = 1
                                                     : null;
-                          
-                                                final value = data[index]
-                                                        .book!
-                                                        .price! *
-                                                    formGroup
-                                                        .control(
-                                                            'books.$index.quantity')
-                                                        .value;
-                          
-                                                formGroup
-                                                    .control(
-                                                        'books.$index.price')
-                                                    .value = value;
-                          
-                                               if(formGroup.control('books.$index.isChecked').value) {
+                                                productTotal();
                                                 getTotal();
-                                              }
+                                             
                                               },
                                               icon: const Icon(Icons.remove)),
                                         ),

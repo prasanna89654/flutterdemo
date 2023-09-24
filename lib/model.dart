@@ -25,15 +25,6 @@ class CartModel {
             : DateTime.parse(json["createdAt"]),
         book: json["book"] == null ? null : Book.fromJson(json["book"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "userId": userId,
-        "publisherId": publisherId,
-        "bookId": bookId,
-        "createdAt": createdAt?.toIso8601String(),
-        "book": book?.toJson(),
-      };
 }
 
 class Book {
@@ -53,11 +44,7 @@ class Book {
         image: json["image"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "price": price,
-        "image": image,
-      };
+
 }
 
 class OrderModel {
@@ -97,18 +84,7 @@ class OrderModel {
                 json["OrderItem"]!.map((x) => OrderItem.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "userId": userId,
-        "status": status,
-        "isPayment": isPayment,
-        "total": total,
-        "createdAt": createdAt?.toIso8601String(),
-        "user": user?.toJson(),
-        "OrderItem": orderItem == null
-            ? []
-            : List<dynamic>.from(orderItem!.map((x) => x.toJson())),
-      };
+
 }
 
 class OrderItem {
@@ -131,12 +107,6 @@ class OrderItem {
         book: json["book"] == null ? null : Book.fromJson(json["book"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "quantity": quantity,
-        "price": price,
-        "status": status,
-        "book": book?.toJson(),
-      };
 }
 
 class Bookss {
@@ -150,9 +120,7 @@ class Bookss {
         title: json["title"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "title": title,
-      };
+ 
 }
 
 class User {
@@ -166,7 +134,5 @@ class User {
         name: json["name"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-      };
+
 }

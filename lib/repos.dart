@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 class CartProvider {
   final String postsURL = "http://192.168.1.153:8080/";
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NDc3MTcyOCwiZXhwIjoxNjk3MzYzNzI4fQ.D6PCcnzawQi4J1AFa6EHODAvApHroYNDn6dh6bAhaQU";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NTA5OTAyOSwiZXhwIjoxNjk3NjkxMDI5fQ.4ho7dzK1Tw2YjKFVq557qeL-wqrYRMH4nkAiX9yyVes";
   Future<List<OrderModel>> getOrders() async {
     try {
       Response res =
@@ -15,7 +15,7 @@ class CartProvider {
         "Authorization": "Bearer $token",
       });
 
-      print(res.statusCode);
+      // print(res.statusCode);
       if (res.statusCode == 200) {
         List<dynamic> body = jsonDecode(res.body);
         List<OrderModel> posts = body
@@ -40,8 +40,8 @@ class CartProvider {
         "Authorization": "Bearer $token",
       });
 
-      print(res.statusCode);
-      if (res.statusCode == 200) {
+      // print(res.statusCode);
+      
         List<dynamic> body = jsonDecode(res.body);
         List<CartModel> posts = body
             .map(
@@ -49,9 +49,7 @@ class CartProvider {
             )
             .toList();
         return posts;
-      } else {
-        throw "Unable to retrieve posts.";
-      }
+     
     } catch (e) {
       rethrow;
     }
