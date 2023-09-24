@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutterdemo/Pages/Esewa/esewamainpage.dart';
 import 'package:flutterdemo/Pages/homepage.dart';
+import 'package:flutterdemo/Try/stack.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -8,8 +10,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
- 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const EsewaApp(
+        title: 'eee',
+      ),
     );
   }
 }

@@ -199,7 +199,6 @@ class _CartPageState extends ConsumerState<CartPage> {
                                       .then((value) {
                                     if (value == 200) {
                                       Navigator.pop(context);
-                                      
                                     }
                                   });
                                 },
