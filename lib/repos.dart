@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterdemo/esewamodel.dart';
 import 'package:flutterdemo/model.dart';
 import 'package:http/http.dart';
 
 class CartProvider {
-  final String postsURL = "http://192.168.1.136:8080/";
+  final String postsURL = "http://192.168.1.153:8080/";
   final String token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NTA5OTAyOSwiZXhwIjoxNjk3NjkxMDI5fQ.4ho7dzK1Tw2YjKFVq557qeL-wqrYRMH4nkAiX9yyVes";
   Future<List<OrderModel>> getOrders() async {
@@ -70,34 +69,6 @@ class CartProvider {
       rethrow;
     }
   }
-
-  // Future<EsewaPaymentModel?> esewaPayment(
-  //     String message,
-  //     String productId,
-  //     String productName,
-  //     String totalAmount,
-  //     String date,
-  //     String status,
-  //     String referenceId) async {
-  //   var data = {
-  //     'message': message,
-  //     'productId': productId,
-  //     'productName': productName,
-  //     'totalAmount': totalAmount,
-  //     'date': date,
-  //     'status': status,
-  //     'referenceId': referenceId,
-  //   };
-  //   try {
-  //     var response = await Api().post(MyConfig.createEsewaPayment, data: data);
-  //     if (response.statusCode == 200) {
-  //       print("sucess");
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //   return null;
-  // }
 }
 
 final cartRepoProvider = Provider<CartProvider>((ref) {

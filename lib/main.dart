@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterdemo/Pages/Esewa/esewamainpage.dart';
-import 'package:flutterdemo/Pages/homepage.dart';
-import 'package:flutterdemo/Try/stack.dart';
+// import 'package:flutterdemo/Pages/homepage.dart';
+// import 'package:flutterdemo/Try/stack.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const EsewaApp(
-        title: 'eee',
+        title: 'okay',
       ),
     );
   }
