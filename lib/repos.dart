@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutterdemo/esewamodel.dart';
 import 'package:flutterdemo/model.dart';
 import 'package:http/http.dart';
 
@@ -73,33 +72,22 @@ class CartProvider {
     }
   }
 
-  // Future<EsewaPaymentModel?> esewaPayment(
-  //     String message,
-  //     String productId,
-  //     String productName,
-  //     String totalAmount,
-  //     String date,
-  //     String status,
-  //     String referenceId) async {
-  //   var data = {
-  //     'message': message,
-  //     'productId': productId,
-  //     'productName': productName,
-  //     'totalAmount': totalAmount,
-  //     'date': date,
-  //     'status': status,
-  //     'referenceId': referenceId,
-  //   };
-  //   try {
-  //     var response = await Api().post(MyConfig.createEsewaPayment, data: data);
-  //     if (response.statusCode == 200) {
-  //       print("sucess");
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //   return null;
-  // }
+  Future<List<SearchModel>> searchBook(dynamic data) async {
+    try {
+      Response res = await get(
+        Uri.parse("${postsURL}report/search?title=$data"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+      print(res.body);
+      return List<SearchModel>.from(
+          json.decode(res.body).map((x) => SearchModel.fromJson(x)));
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
 final cartRepoProvider = Provider<CartProvider>((ref) {
@@ -114,4 +102,10 @@ final orderProvider = FutureProvider.autoDispose<List<OrderModel>>((ref) async {
 final cartProvider = FutureProvider.autoDispose<List<CartModel>>((ref) async {
   final repo = ref.watch(cartRepoProvider);
   return repo.getCarts();
+});
+
+final searchProvider = FutureProvider.family
+    .autoDispose<List<SearchModel>, dynamic>((ref, data) async {
+  final repo = ref.watch(cartRepoProvider);
+  return repo.searchBook(data);
 });
