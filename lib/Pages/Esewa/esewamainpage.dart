@@ -37,7 +37,12 @@ class _EsewaAppState extends State<EsewaApp> {
               ),
               width: 40,
               onFailure: (result) async {},
-              onSuccess: (result) async {},
+              onSuccess: (result) async {
+                // setState(() {
+                //   // refId = result.refId;
+                // });
+                print(result.toJson());
+              },
             ),
 
           
