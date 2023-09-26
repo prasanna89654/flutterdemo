@@ -13,7 +13,8 @@ class _SearchpageState extends ConsumerState<SearchPage> {
   dynamic titlevalue;
   @override
   Widget build(BuildContext context) {
-    final searchdata = ref.watch(searchProvider(titlevalue));
+    final searchdata = ref.watch(
+        searchProvider(titlevalue.toString().isEmpty ? null : titlevalue));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search Page'),
