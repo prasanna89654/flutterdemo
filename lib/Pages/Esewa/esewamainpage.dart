@@ -13,7 +13,14 @@ class EsewaApp extends StatefulWidget {
 class _EsewaAppState extends State<EsewaApp> {
   String refId = '';
   String hasError = '';
-
+  ESewaConfig paymentConfig = ESewaConfig.dev(
+    su: 'https://www.marvel.com/hello',
+    amt: 10,
+    pdc: 10,
+    tAmt: 20,
+    fu: 'https://www.marvel.com/hello',
+    pid: '123445',
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +32,40 @@ class _EsewaAppState extends State<EsewaApp> {
           mainAxisSize: MainAxisSize.min,
           children: [
             /// Example Use case - 1
-            EsewaPayButton(
-              paymentConfig: ESewaConfig.dev(
-                su: 'https://www.marvel.com/hello',
-                amt: 10,
-                pdc: 10,
-                tAmt: 20,
-                fu: 'https://www.marvel.com/hello',
-                pid: '123445',
-              ),
-              width: 40,
-              onFailure: (result) async {},
-              onSuccess: (result) async {
-                // setState(() {
-                //   // refId = result.refId;
-                // });
-                print(result.toJson());
-              },
-            ),
+            // EsewaPayButton(
+            //   paymentConfig: ESewaConfig.dev(
+            //     su: 'https://www.marvel.com/hello',
+            //     amt: 10,
+            //     pdc: 10,
+            //     tAmt: 20,
+            //     fu: 'https://www.marvel.com/hello',
+            //     pid: '123445',
+            //   ),
+            //   width: 40,
+            //   onFailure: (result) async {},
+            //   onSuccess: (result) async {
+            //     // setState(() {
+            //     //   // refId = result.refId;
+            //     // });
+            //     print(result.toJson());
+            //   },
+            // ),
+
+            ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final result = await Esewa.i
+                        .init(context: context, eSewaConfig: paymentConfig);
+                    if (result.hasData) {
+                      // onSuccess(result.data!);
+                    } else {
+                      // onFailure(result.error!);
+                    }
+                  } catch (e) {
+                    // onFailure('An Exception Occurred');
+                  }
+                },
+                child: const Text("Nice"))
 
             /// Example Use case - 1
             // TextButton(
@@ -71,10 +94,6 @@ class _EsewaAppState extends State<EsewaApp> {
             //   },
             //   child: const Text('Pay with Esewa'),
             // ),
-            if (refId.isNotEmpty)
-              Text('Console: Payment Success, Ref Id: $refId'),
-            if (hasError.isNotEmpty)
-              Text('Console: Payment Failed, Message: $hasError'),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
