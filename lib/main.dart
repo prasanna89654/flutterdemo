@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterdemo/Pages/homepage.dart';
-// import 'package:flutterdemo/Pages/Esewa/esewamainpage.dart';
-// import 'package:flutterdemo/Pages/homepage.dart';
-import 'package:flutterdemo/Pages/searchpage.dart';
-// import 'package:flutterdemo/Try/stack.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -35,13 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- 
-
   @override
   Widget build(BuildContext context) {
-
-    return const Scaffold(
-   
-    );
+    return const Scaffold();
   }
 }
