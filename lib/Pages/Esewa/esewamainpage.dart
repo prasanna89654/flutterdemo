@@ -11,16 +11,8 @@ class EsewaApp extends StatefulWidget {
 }
 
 class _EsewaAppState extends State<EsewaApp> {
-  String refId = '';
-  String hasError = '';
-  ESewaConfig paymentConfig = ESewaConfig.dev(
-    su: 'https://www.marvel.com/hello',
-    amt: 10,
-    pdc: 10,
-    tAmt: 20,
-    fu: 'https://www.marvel.com/hello',
-    pid: '123445',
-  );
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,72 +23,33 @@ class _EsewaAppState extends State<EsewaApp> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            /// Example Use case - 1
-            // EsewaPayButton(
-            //   paymentConfig: ESewaConfig.dev(
-            //     su: 'https://www.marvel.com/hello',
-            //     amt: 10,
-            //     pdc: 10,
-            //     tAmt: 20,
-            //     fu: 'https://www.marvel.com/hello',
-            //     pid: '123445',
-            //   ),
-            //   width: 40,
-            //   onFailure: (result) async {},
-            //   onSuccess: (result) async {
-            //     // setState(() {
-            //     //   // refId = result.refId;
-            //     // });
-            //     print(result.toJson());
-            //   },
-            // ),
+           
+            EsewaPayButton(
+              title: 'Hello',
+              paymentConfig: ESewaConfig.dev(
+                su: 'https://stackoverflow.com/questions/75117263/how-to-edit-the-taken-picture-with-flutter',
+                amt: 10,
+                pdc: 18,
+                
+                tAmt: 28,
+                fu: 'https://stackoverflow.com/questions/75117263/how-to-edit-the-taken-picture-with-flutter',
+                pid: '12145',  //order id
+              ),
+              width: 40,
+              onFailure: (result) async {},
+              onSuccess: (result) async {
+                // setState(() {
+                //   // refId = result.refId;
+                // });
+                print(result.toJson());
+              },
+            ),
 
-            ElevatedButton(
-                onPressed: () async {
-                  try {
-                    final result = await Esewa.i
-                        .init(context: context, eSewaConfig: paymentConfig);
-                    if (result.hasData) {
-                      // onSuccess(result.data!);
-                    } else {
-                      // onFailure(result.error!);
-                    }
-                  } catch (e) {
-                    // onFailure('An Exception Occurred');
-                  }
-                },
-                child: const Text("Nice"))
-
-            /// Example Use case - 1
-            // TextButton(
-            //   onPressed: () async {
-            //     final result = await Esewa.i.init(
-            //         context: context,
-            //         eSewaConfig: ESewaConfig.dev(
-            //           // .live for live
-            //           su: 'https://www.marvel.com/hello',
-            //           amt: 10,
-            //           fu: 'https://www.marvel.com/hello',
-            //           pid: '1212',
-            //           // scd: dotenv.env['ESEWA_SCD']!
-            //         ));
-            //     // final result = await fakeEsewa();
-            //     if (result.hasData) {
-            //       final response = result.data!;
-            //       if (kDebugMode) {
-            //         print(response.toJson());
-            //       }
-            //     } else {
-            //       if (kDebugMode) {
-            //         print(result.error);
-            //       }
-            //     }
-            //   },
-            //   child: const Text('Pay with Esewa'),
-            // ),
+          
+        
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 }
