@@ -43,8 +43,6 @@ class Book {
         price: json["price"],
         image: json["image"],
       );
-
-
 }
 
 class OrderModel {
@@ -83,8 +81,6 @@ class OrderModel {
             : List<OrderItem>.from(
                 json["OrderItem"]!.map((x) => OrderItem.fromJson(x))),
       );
-
-
 }
 
 class OrderItem {
@@ -106,7 +102,6 @@ class OrderItem {
         status: json["status"],
         book: json["book"] == null ? null : Book.fromJson(json["book"]),
       );
-
 }
 
 class Bookss {
@@ -119,8 +114,6 @@ class Bookss {
   factory Bookss.fromJson(Map<String, dynamic> json) => Bookss(
         title: json["title"],
       );
-
- 
 }
 
 class User {
@@ -133,35 +126,32 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         name: json["name"],
       );
-
-
 }
 
-
 class SearchModel {
-    final String? id;
-    final String? title;
-    final int? price;
-    final dynamic image;
+  final String? id;
+  final String? title;
+  final int? price;
+  final dynamic image;
 
-    SearchModel({
-        this.id,
-        this.title,
-        this.price,
-        this.image,
-    });
+  SearchModel({
+    this.id,
+    this.title,
+    this.price,
+    this.image,
+  });
 
-    factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
+  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
         id: json["id"],
         title: json["title"],
         price: json["price"],
         image: json["image"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "price": price,
         "image": image,
-    };
+      };
 }

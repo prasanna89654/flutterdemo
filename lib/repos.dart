@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 class CartProvider {
   final String postsURL = "http://192.168.1.153:8080/";
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NTA5OTAyOSwiZXhwIjoxNjk3NjkxMDI5fQ.4ho7dzK1Tw2YjKFVq557qeL-wqrYRMH4nkAiX9yyVes";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjYzhhYzU3LWNiYTItNGEzZC04MDkxLWUyZjcyNzI4NmJlNiIsImlhdCI6MTY5NTc5NjMzNywiZXhwIjoxNjk4Mzg4MzM3fQ.SdfxN2tg_u1VS2wKxrhgQsQyRvbPfAPOihFNThcVOvQ";
   Future<List<OrderModel>> getOrders() async {
     try {
       Response res =
@@ -63,6 +63,7 @@ class CartProvider {
             "Authorization": "Bearer $token",
           },
           body: json.encode(data));
+    print(res.body);
 
       return res.statusCode;
     } catch (e) {
@@ -79,7 +80,7 @@ class CartProvider {
           "Authorization": "Bearer $token",
         },
       );
-      print(res.body);
+      // print(res.body);
       return List<SearchModel>.from(
           json.decode(res.body).map((x) => SearchModel.fromJson(x)));
     } catch (e) {
